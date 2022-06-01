@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: oni-google-backup-helper
+Version: 0.1
+Summary: Helper de Backup para o Google dos OniDevs
+Home-page: https://github.com/Gc04346
+Download-URL: https://github.com/Onimusic/oni_google_backup_helper.git
+Author: Daniel Santana Santos
+Author-email: gc04346@gmail.com
+Keywords: onimusic
+Classifier: Private :: Do Not Upload
+Description-Content-Type: text/markdown
+
+# OniDev's Helper Para Backup no Google
+
+Faz upload para o Google Cloud Storage, e usando o DataTransfer, para o BigQuery também.
