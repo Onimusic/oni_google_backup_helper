@@ -1,0 +1,14 @@
+name: Avisar sobre PR aberta
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Envia mensagem no Telegram
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.telegram.org/bot5393351877:AAGUfRG3WY5sbQcp2aaGB_9Qx2dkXDeJF9o/sendMessage?chat_id=@onitifications_devs&text=Nova%20PR%20em%20oni_google_backup_helper'
