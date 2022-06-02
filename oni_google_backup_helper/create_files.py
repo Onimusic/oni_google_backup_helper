@@ -4,7 +4,7 @@ from math import ceil
 from typing import List, Any
 
 
-def create_split_files(header: List[str], data: List[Any], records_amnt: int, max_records: int) -> List[StringIO]:
+def create_split_csv_files(header: List[str], data: List[Any], records_amnt: int, max_records: int) -> List[StringIO]:
     """
     Cria os arquivos csv que serão enviados para backup, fragmentados a cada {max_records} registros.
     Args:
