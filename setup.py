@@ -17,7 +17,7 @@ setup(
     # Packages to include in the distribution:
     packages=['oni_google_backup_helper', *find_packages(',')],
     # Project version number:
-    version='1.0',
+    version='1.1',
     # List a license for the project, eg. MIT License
     license='',
     # Short description of your library:
