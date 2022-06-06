@@ -104,10 +104,9 @@ nomes no formato: f’{dataset_id}_{table_name}_{filename}’, e envia o comando
 <dt class="sig sig-object py" id="oni_google_backup_helper.init_clients.create_credentials">
 <span class="sig-prename descclassname"><span class="pre">oni_google_backup_helper.init_clients.</span></span><span class="sig-name descname"><span class="pre">create_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Credentials</span></span></span><a class="headerlink" href="#oni_google_backup_helper.init_clients.create_credentials" title="Link permanente para esta definição">¶</a></dt>
 <dd><p>Cria o objeto Credentials do Google Service Account.
-:param credentials_path: Nome do arquivo json com as credenciais. Para uso com o Django, enviar no formato</p>
-<blockquote>
-<div><p>staticfiles_storage.path(credentials_path).</p>
-</div></blockquote>
+:param credentials_path: Nome do arquivo json com as credenciais. Para uso com o Django, enviar no formato
+:param staticfiles_storage.path:
+:type staticfiles_storage.path: credentials_path</p>
 <p>Returns: Objeto service_account.Credentials</p>
 </dd></dl>
 
@@ -124,10 +123,9 @@ nomes no formato: f’{dataset_id}_{table_name}_{filename}’, e envia o comando
 <dt class="sig sig-object py" id="oni_google_backup_helper.init_clients.init_storage_client">
 <span class="sig-prename descclassname"><span class="pre">oni_google_backup_helper.init_clients.</span></span><span class="sig-name descname"><span class="pre">init_storage_client</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Client</span></span></span><a class="headerlink" href="#oni_google_backup_helper.init_clients.init_storage_client" title="Link permanente para esta definição">¶</a></dt>
 <dd><p>Inicializa o cliente do Storage.
-:param credentials_path: Nome do arquivo json com as credenciais. Para uso com o Django, enviar no formato</p>
-<blockquote>
-<div><p>staticfiles_storage.path(credentials_path).</p>
-</div></blockquote>
+:param credentials_path: Nome do arquivo json com as credenciais. Para uso com o Django, enviar no formato
+:param staticfiles_storage.path:
+:type staticfiles_storage.path: credentials_path</p>
 <p>Returns: storage.Client</p>
 </dd></dl>
 
