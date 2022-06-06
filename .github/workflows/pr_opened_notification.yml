@@ -11,4 +11,4 @@ jobs:
     - name: Envia mensagem no Telegram
       uses: fjogeleit/http-request-action@v1
       with:
-        url: 'https://api.telegram.org/bot5393351877:AAGUfRG3WY5sbQcp2aaGB_9Qx2dkXDeJF9o/sendMessage?chat_id=@onitifications_devs&text=Nova%20PR%20em%20oni_google_backup_helper'
+        url: 'https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage?chat_id=@onitifications_devs&text=Nova%20PR%20em%20oni_google_backup_helper'
