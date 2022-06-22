@@ -24,3 +24,20 @@ def create_split_csv_files(header: List[str], data: List[Any], records_amnt: int
             writer.writerow(item)
         files.append(file)
     return files
+
+
+def create_single_csv_file(header: List[str], data: List[Any]) -> StringIO:
+    """
+    Cria um arquivo csv que pode ser enviados para backup.
+    Args:
+        header: Lista de strings que comporão o cabeçalho do csv.
+        data: Dados que serão impressos nas linhas do csv.
+
+    Returns: Arquivo no formato StringIO.
+    """
+    file = StringIO()
+    writer = csv.writer(file, dialect='excel', delimiter=',')
+    writer.writerow(header)
+    for item in data:
+        writer.writerow(item)
+    return file
