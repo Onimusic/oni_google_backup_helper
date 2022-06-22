@@ -60,28 +60,23 @@ def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, tab
 def backup_to_bucket(
         storage_client: storage.Client,
         bucket_name: str,
-        files: List[StringIO],
-        file_name_prefix: str
+        file: StringIO,
+        filename: str
 ) -> Tuple[bool, list]:
     """ Envia os dados do arquivo csv para o bucket.
 
     Args:
         storage_client: Cliente do Google Storage
         bucket_name: Nome do bucket no Google
-        files: Lista de arquivos csv.
-        file_name_prefix: Prefixo do nome para os arquivos csv.
+        file: Arquivo csv no formato StringIO.
+        filename: Nome do arquivo csv.
 
-    Returns: Booleano indicando o sucesso da operação e uma lista contendo os nomes dos arquivos enviados.
+    Returns: Booleano indicando o sucesso da operação.
     """
-    file_names = []
     try:
         bucket = storage_client.bucket(bucket_name)
-        total_files = len(files)
-        for i, file in enumerate(files):
-            filename = f'{file_name_prefix}_{i + 1}_of_{total_files}.csv'
-            blob = bucket.blob(filename)
-            blob.upload_from_string(file.getvalue())
-            file_names.append(filename)
-        return True, file_names
+        blob = bucket.blob(filename)
+        blob.upload_from_string(file.getvalue())
+        return True
     except Exception as e:
         raise e
