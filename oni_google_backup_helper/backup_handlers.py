@@ -35,7 +35,7 @@ def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, tab
         }
 
         if table_id_for_replacement is not None:
-            delete_query = f'DELETE FROM {table_id} where True'
+            delete_query = f'DELETE FROM {table_id_for_replacement} where True'
 
             client = bigquery.Client()
             query_job = client.query(delete_query)
