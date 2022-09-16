@@ -30,3 +30,43 @@ pip uninstall oni_google_backup_helper
 ```
 
 Após o teste crie sua PR e envie para avaliação.
+Se deseja que sua PR vire uma nova release, não se esqueça de mudar no `setup.py` na opção version adicione o nome da
+próxima versão proposta para o pacote.  
+
+## Como criar uma nova release do projeto
+Uma vez que sua contribuição for aprovada via PR você está preparado para criar uma nova release do projeto.
+
+O primeiro passo é criar uma nova tag com base no commit que foi aprovado. Para isso na branch master execute o comando:
+
+```bash
+git tag -a <tag_name> -m "<comentário descritivo da tag>"
+```
+
+Exemplos de `tag_name`: `v1.2`, `v1.2.3` ou `v1.2-beta`
+
+Com a tag criada faça o seu envio para o repositório no `GitHub`.
+
+```bash
+git push origin <tag_name>
+```
+
+Com a tag enviada podemos seguir para a criação de uma release.
+Essa pode ser criada diretamente pelo github com os seguintes passos:
+ - Vá no repositório do projeto no GitHub na aba Code.
+ - Acesse o menu Releases presente, normalmente, no lado direito.
+ - Clique na opção Tags para ver a listagem de tags.
+ - Clique nos três pontinhos a direita na tag que você acabou de criar.
+ - Selecione a opção create release.
+ - Adicione um nome na release (pode ser o mesmo nome da tag) e uma descrição para as novas features da tag.
+
+## Como atualizar o requirements dos projetos que utilizam o pacote ?
+Para instalar via requirements uma versão específica de seu pacote basta adicionar a linha:
+
+```bash
+oni-google-backup-helper @ git+https://github.com/Onimusic/oni_google_backup_helper.git@<nome_da_tag_desejada>
+```
+
+Ex: se criassemos um tag `v1.3` e desejássemos usar a mesma em um projeto basta adicionar no requirements
+```bash
+oni-google-backup-helper @ git+https://github.com/Onimusic/oni_google_backup_helper.git@v1.3
+```
