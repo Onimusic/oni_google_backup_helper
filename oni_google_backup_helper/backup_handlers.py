@@ -3,20 +3,22 @@ from io import StringIO
 import time
 
 import google.api_core.exceptions
-from google.cloud import storage
-from google.cloud import bigquery_datatransfer_v1
+from google.cloud import bigquery_datatransfer_v1, storage, bigquery
 
 
-def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, table_name: str, dataset_id: str) -> bool:
-    """
-    Faz o backup para o bigquery a partir de DataTransfers dos arquivos csv no Google Bucket. Cria DataTransfers com
+def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, table_name: str, dataset_id: str,
+                       table_id_for_replacement: str = None) -> bool:
+    """Faz o backup para o bigquery a partir de DataTransfers dos arquivos csv no Google Bucket. Cria DataTransfers com
     nomes no formato: f'{dataset_id}_{table_name}_{filename}', e envia o comando para executá-los imediatamente.
+
     Args:
         file_names: Lista contendo os nomes dos arquivos no bucket
         bucket_name: Nome do bucket no Google Storages. Ex.: "backups-oni"
         parent: Parent do Data Transfer. Vem no formato ^projects/<project_id>/locations/<location>$
         table_name: Nome da tabela do BigQuery. Ex.: "itens_financeiro"
         dataset_id: Id do dataset do BigQuery. Ex.: "apponi", ou "appeditora"
+        table_id_for_replacement: Contém o ID completo da tabela no BigQuery. Você encontra essa informação nos dados
+         sobre a tabela. Quando informado apaga os dados da tabela para realizar a sobrescrita.
 
     Returns: Sucesso da operação
     """
@@ -31,6 +33,14 @@ def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, tab
             "allow_quoted_newlines": "true",
             "delete_source_files": "false",
         }
+
+        if table_id_for_replacement is not None:
+            delete_query = f'DELETE FROM {table_id} where True'
+
+            client = bigquery.Client()
+            query_job = client.query(delete_query)
+            query_job.result()
+
         transfer_config = bigquery_datatransfer_v1.TransferConfig()
         transfer_config.destination_dataset_id = dataset_id
         transfer_config.name = transfer_config.display_name
