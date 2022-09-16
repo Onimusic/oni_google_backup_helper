@@ -7,7 +7,7 @@ from google.cloud import bigquery_datatransfer_v1, storage, bigquery
 
 
 def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, table_name: str, dataset_id: str,
-                       replace_data: bool = False, table_id: str = None) -> bool:
+                       table_id_for_replacement: str = None) -> bool:
     """Faz o backup para o bigquery a partir de DataTransfers dos arquivos csv no Google Bucket. Cria DataTransfers com
     nomes no formato: f'{dataset_id}_{table_name}_{filename}', e envia o comando para executá-los imediatamente.
 
@@ -17,9 +17,8 @@ def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, tab
         parent: Parent do Data Transfer. Vem no formato ^projects/<project_id>/locations/<location>$
         table_name: Nome da tabela do BigQuery. Ex.: "itens_financeiro"
         dataset_id: Id do dataset do BigQuery. Ex.: "apponi", ou "appeditora"
-        replace_data: informa se iremos sobrepor a tabela ou não.
-        table_id: necessário caso replace_data = True. Contém o ID completo da tabela no BigQuery. Você encontra essa
-         informação nos dados sobre a tabela.
+        table_id_for_replacement: Contém o ID completo da tabela no BigQuery. Você encontra essa informação nos dados
+         sobre a tabela. Quando informado apaga os dados da tabela para realizar a sobrescrita.
 
     Returns: Sucesso da operação
     """
@@ -35,7 +34,7 @@ def backup_to_bigquery(file_names: List[str], bucket_name: str, parent: str, tab
             "delete_source_files": "false",
         }
 
-        if replace_data and table_id is not None:
+        if table_id_for_replacement is not None:
             delete_query = f'DELETE FROM {table_id} where True'
 
             client = bigquery.Client()
