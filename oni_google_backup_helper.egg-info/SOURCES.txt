@@ -5,6 +5,7 @@ oni_google_backup_helper/backup_handlers.py
 oni_google_backup_helper/clear_table_content.py
 oni_google_backup_helper/create_files.py
 oni_google_backup_helper/init_clients.py
+oni_google_backup_helper/sql_utils.py
 oni_google_backup_helper.egg-info/PKG-INFO
 oni_google_backup_helper.egg-info/SOURCES.txt
 oni_google_backup_helper.egg-info/dependency_links.txt

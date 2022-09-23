@@ -1,4 +1,6 @@
 import os
+import googleapiclient
+from googleapiclient.discovery import build
 
 from google.cloud import bigquery
 from google.cloud import storage
@@ -52,3 +54,17 @@ def init_storage_client(credentials_path: str) -> storage.Client:
     except Exception as e:
         raise e
 
+
+def init_sqladmin_client(credentials_path):
+    """Faz a construção de um cliente para uso da api do sqladmin.
+
+    Args:
+        credentials_path: Nome do arquivo json com as credenciais.
+
+    Returns: cliente sqladmin.
+    """
+    creds = service_account.Credentials.from_service_account_file(credentials_path)
+    try:
+        return googleapiclient.discovery.build('sqladmin', 'v1beta4', credentials=creds)
+    except Exception as e:
+        raise e
