@@ -2,6 +2,7 @@ cachetools
 certifi
 charset-normalizer
 google-api-core
+google-api-python-client
 google-auth
 google-cloud-bigquery
 google-cloud-bigquery-datatransfer
